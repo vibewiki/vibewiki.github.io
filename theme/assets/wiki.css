@@ -103,7 +103,7 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .results__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
 .result { display: flex; flex-direction: column; gap: 6px; padding: 14px 14px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); text-decoration: none; transition: border-color 0.15s var(--ease), transform 0.15s var(--ease); }
 .result:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-.result img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top left; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 10px; }
+.result img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top center; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 10px; }
 .result__step { font: 400 12px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-2); }
 .result strong { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
 .result span:last-child { font-size: 15px; color: var(--ink-2); }
