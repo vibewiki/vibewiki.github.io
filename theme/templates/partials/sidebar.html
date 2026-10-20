@@ -92,4 +92,7 @@
     </ul>
     {{- end }}
   </div>
+  <div class="side__step side__after">
+    <p class="side__title"><span class="side__num">→</span><a href="{{ $.BaseURL }}/{{ $.Settings.after_slug }}/"{{ if eq $.Page.Slug $.Settings.after_slug }} aria-current="page"{{ end }}>После курса</a></p>
+  </div>
 </nav>

@@ -29,5 +29,7 @@ mkdir -p "$DIST"
 "$NOTEPUB_BIN" index --config "$CONFIG" --rules ./rules.yaml
 "$NOTEPUB_BIN" validate --config "$CONFIG" --rules ./rules.yaml --resolve ./.notepub/artifacts/resolve.json --links --markdown
 "$NOTEPUB_BIN" build --config "$CONFIG" --rules ./rules.yaml --dist "$DIST" --artifacts ./.notepub/artifacts
+# снимки экрана к материалам: в тексте — ![…](/media/shots/имя.png), движок выводит их от media_base_url
+if [[ -d media ]]; then mkdir -p "$DIST/media"; cp -R media/. "$DIST/media/"; fi
 touch "$DIST/.nojekyll"
 echo "Готово: $DIST — не закоммичено и не опубликовано"

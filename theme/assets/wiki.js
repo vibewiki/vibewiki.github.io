@@ -39,3 +39,29 @@
     pre.appendChild(btn);
   });
 })();
+
+/* Меню помнит, докуда его прокрутили: после перехода оно стоит там же, а не с начала. Если открытый материал
+   при этом не виден (пришли по ссылке из текста или с другого сайта) — меню прокручивается к нему. */
+(function () {
+  var KEY = 'wiki-menu-scroll';
+  var saved = {};
+  try { saved = JSON.parse(sessionStorage.getItem(KEY) || '{}'); } catch (e) {}
+  Array.prototype.forEach.call(document.querySelectorAll('.side, [data-drawer]'), function (box, i) {
+    function show() {
+      var cur = box.querySelector('[aria-current="page"]');
+      if (!cur || !box.clientHeight) return;
+      var a = cur.getBoundingClientRect(), b = box.getBoundingClientRect();
+      if (a.top < b.top + 8 || a.bottom > b.bottom - 8) box.scrollTop += a.top - b.top - (box.clientHeight - a.height) / 2;
+    }
+    if (saved[i]) box.scrollTop = saved[i];
+    show();
+    if (box.hasAttribute('data-drawer')) {      // ящик скрыт до открытия: место в нём выставляется, когда он открыт
+      var btn = document.querySelector('[data-drawer-open]');
+      if (btn) btn.addEventListener('click', function () { if (saved[i]) box.scrollTop = saved[i]; show(); });
+    }
+    box.addEventListener('scroll', function () {
+      saved[i] = box.scrollTop;
+      try { sessionStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+    }, { passive: true });
+  });
+})();

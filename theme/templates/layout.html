@@ -33,6 +33,7 @@
         <span class="top__note">{{ .Settings.site_note }}</span>
       </a>
       <nav class="top__links" aria-label="О курсе">
+        <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/"{{ if eq .Page.Slug .Settings.after_slug }} aria-current="page"{{ end }}>После курса</a>
         <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/"{{ if eq .Page.Slug .Settings.add_slug }} aria-current="page"{{ end }}>Добавить материал</a>
         <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
       </nav>
@@ -40,6 +41,11 @@
     </div>
   </header>
 
+  {{- if .IsHome }}
+  <main class="home-main">
+    {{ .Body }}
+  </main>
+  {{- else }}
   <div class="wrap">
     <aside class="side">
       {{ template "sidebar.html" . }}
@@ -48,6 +54,7 @@
       {{ .Body }}
     </main>
   </div>
+  {{- end }}
 
   <div class="overlay" data-drawer-overlay hidden></div>
   <aside class="drawer" id="drawer" data-drawer aria-label="Содержание" aria-hidden="true" hidden>
@@ -57,6 +64,7 @@
     </div>
     {{ template "sidebar.html" . }}
     <p class="drawer__links">
+      <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/">После курса</a>
       <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/">Добавить материал</a>
       <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
     </p>

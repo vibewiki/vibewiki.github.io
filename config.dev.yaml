@@ -49,6 +49,7 @@ settings:
   site_note: "Открытый курс для тех, кто не программист"
   repo_url: "https://github.com/vibewiki/vibecourse"
   add_slug: "kak-dobavit-material"      # страница, куда ведёт «Добавить материал» в шапке
+  after_slug: "posle-kursa"             # оффер в конце курса: «После курса» в шапке, в меню и на главной
   author_label: "Об авторе"
   author_url: "https://antonlozhkin.ru/"
   contact_url: "https://t.me/cookiespooky"

@@ -1,12 +1,131 @@
-<article class="page">
-  <header class="page__head">
-    <p class="eyebrow">{{ .Settings.site_note }}</p>
-    <h1>{{ .Page.Title }}</h1>
-    {{- if .FM.lead }}
-    <p class="lead">{{ .FM.lead }}</p>
-    {{- end }}
-  </header>
-  <div class="prose">
+{{- /* Главная: первый экран, что получится к концу, девять ступеней карточками, кто пишет, что после курса.
+       Бокового меню здесь нет (layout.html): ступени перечислены карточками. Названия ступеней и строка «что выйдет»
+       вписаны руками, как в sidebar.html, — движок не умеет циклов по числам. Снимки — media/shots/. */ -}}
+<div class="home">
+  <section class="hero">
+    <div class="hero__text">
+      <p class="eyebrow">Девять ступеней · бесплатно · по-русски</p>
+      <h1>{{ .Page.Title }}</h1>
+      {{- if .FM.lead }}
+      <p class="lead">{{ .FM.lead }}</p>
+      {{- end }}
+      <div class="hero__cta">
+        <a class="btn" href="{{ .BaseURL }}/chto-takoe-vaybkoding/">Начать с первой ступени →</a>
+        <a class="btn btn--ghost" href="#steps">Все ступени</a>
+      </div>
+      <ul class="hero__facts">
+        <li>Девять ступеней, каждая заканчивается вещью, которая работает</li>
+        <li>С самого начала: оплата из России и установка</li>
+        <li>Только то, что автор проделал сам</li>
+      </ul>
+    </div>
+    <figure class="hero__shot">
+      <img src="{{ .BaseURL }}/media/shots/vscode-claude.png" alt="Окно VS Code: слева файлы папки, в середине разговор с Claude и первое сообщение" width="1600" height="891">
+      <figcaption>Так выглядит работа: слева ваши файлы, справа разговор с Claude по-русски.</figcaption>
+    </figure>
+  </section>
+
+  <section class="results" aria-labelledby="results-h">
+    <h2 id="results-h">Что у вас будет к концу курса</h2>
+    <p class="section-lead">Не учебные упражнения, а вещи для своего дела. Снимки ниже — примеры того, что получается по запросам из курса.</p>
+    <div class="results__grid">
+      <a class="result" href="{{ .BaseURL }}/stranica-o-svoem-dele/">
+        <img src="{{ .BaseURL }}/media/shots/stranica-kompyuter.png" alt="Страница бухгалтера кафе с кнопкой «Написать в Telegram» и ценами" loading="lazy">
+        <span class="result__step">Ступени 4–5</span>
+        <strong>Страница о своём деле</strong>
+        <span>Услуги, цены, кнопка связи — по вашему адресу в интернете.</span>
+      </a>
+      <a class="result" href="{{ .BaseURL }}/kalkulyator-ceny/">
+        <img src="{{ .BaseURL }}/media/shots/kalkulyator.png" alt="Калькулятор: число сотрудников, две галочки и итоговая цена" loading="lazy">
+        <span class="result__step">Ступень 6</span>
+        <strong>Калькулятор цены</strong>
+        <span>Клиент отмечает, что ему нужно, и сразу видит цену.</span>
+      </a>
+      <a class="result" href="{{ .BaseURL }}/forma-zayavki/">
+        <img src="{{ .BaseURL }}/media/shots/forma-pustoe-pole.png" alt="Форма заявки с подсвеченным незаполненным полем" loading="lazy">
+        <span class="result__step">Ступень 6</span>
+        <strong>Форма заявки</strong>
+        <span>Клиент пишет вам в Telegram в один щелчок, с уже собранным сообщением.</span>
+      </a>
+    </div>
+    <p class="results__more">А дальше — <a href="{{ .BaseURL }}/kak-sozdat-bota/">бот</a>, который принимает заявки, пока вы спите,
+      и <a href="{{ .BaseURL }}/sprosit-u-svoey-tablicy/">вопросы к своим таблицам</a>, документам, почте и календарю.</p>
+  </section>
+
+  <section class="steps" id="steps" aria-labelledby="steps-h">
+    <h2 id="steps-h">Девять ступеней</h2>
+    <p class="section-lead">Идут по порядку. Если что-то уже умеете — начинайте с той, которая нужна.</p>
+    <ol class="steps__grid">
+      <li class="step">
+        <p class="step__num">1</p>
+        <h3>Что это и чего ждать</h3>
+        <p class="step__out">Понятно, что получится за вечер, а что — нет.</p>
+        <ul>{{ range .Collections.step_1.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">2</p>
+        <h3>Доступ: оплатить и установить</h3>
+        <p class="step__out">Оплаченная подписка и Claude Code в программе VS Code.</p>
+        <ul>{{ range .Collections.step_2.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">3</p>
+        <h3>Первый разговор</h3>
+        <p class="step__out">Задача, после которой получается то, что вы имели в виду.</p>
+        <ul>{{ range .Collections.step_3.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">4</p>
+        <h3>Первая вещь</h3>
+        <p class="step__out">Страница о вашем деле — пока на вашем компьютере.</p>
+        <ul>{{ range .Collections.step_4.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">5</p>
+        <h3>В интернет</h3>
+        <p class="step__out">Страница открывается у любого человека, по вашему адресу.</p>
+        <ul>{{ range .Collections.step_5.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">6</p>
+        <h3>Первое приложение</h3>
+        <p class="step__out">Калькулятор цены и форма заявки на вашей странице.</p>
+        <ul>{{ range .Collections.step_6.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">7</p>
+        <h3>Бот</h3>
+        <p class="step__out">Telegram-бот принимает заявки и присылает их вам.</p>
+        <ul>{{ range .Collections.step_7.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">8</p>
+        <h3>Свои данные</h3>
+        <p class="step__out">Таблицы, документы, почта и календарь отвечают на вопросы.</p>
+        <ul>{{ range .Collections.step_8.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+      <li class="step">
+        <p class="step__num">9</p>
+        <h3>Как не сломать</h3>
+        <p class="step__out">Сохранения, ключи, расходы — и когда пора звать человека.</p>
+        <ul>{{ range .Collections.step_9.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
+      </li>
+    </ol>
+  </section>
+
+  <section class="home__about prose">
     {{ .Body }}
-  </div>
-</article>
+  </section>
+
+  <section class="offer" aria-labelledby="offer-h">
+    <p class="offer__kicker">После курса</p>
+    <h2 id="offer-h">Дальше — одному или вместе</h2>
+    <div class="offer__grid">
+      <div><strong>Разбор</strong><span>Один созвон: смотрим, что вы сделали, что опасно оставлять и какой следующий шаг.</span></div>
+      <div><strong>Сделать вместе</strong><span>Доводим ваш черновик до вещи для клиентов — ступенями, с ценой и сроком до начала.</span></div>
+      <div><strong>Life OS</strong><span>Система для своего дела: почта, Telegram, календарь и задачи связаны в одно место.</span></div>
+      <div><strong>Следующий курс</strong><span>Вход под своим именем, оплата, данные клиентов. Готовится.</span></div>
+    </div>
+    <a class="btn btn--light" href="{{ .BaseURL }}/{{ .Settings.after_slug }}/">Подробнее о каждом →</a>
+  </section>
+</div>
