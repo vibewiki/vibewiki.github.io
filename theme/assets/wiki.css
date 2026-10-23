@@ -61,6 +61,10 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .code-copy { position: absolute; top: 8px; right: 8px; padding: 5px 10px; border: 1px solid var(--panel-line); border-radius: 6px; background: transparent; color: var(--panel-muted); font: 400 11px/1.2 var(--font-mono); cursor: pointer; transition: color 0.15s var(--ease), border-color 0.15s var(--ease); }
 .code-copy:hover { color: var(--panel-ink); border-color: var(--panel-muted); }
 .code-copy.is-done { color: var(--panel-ink); }
+/* callout из заметки: > [!tip] Заголовок — движок делает из него блок с заголовком */
+.prose .callout { padding: 14px 18px; background: var(--paper-2); border-radius: 10px; }
+.prose .callout-title { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; color: var(--muted); }
+.prose .callout-body { margin-top: 4px; color: var(--ink-1); }
 .prose blockquote { margin: 0; padding: 2px 0 2px 18px; border-left: 2px solid var(--line-strong); color: var(--ink-2); }
 .prose table { width: 100%; border-collapse: collapse; font-size: 15px; }
 .prose th, .prose td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }

@@ -75,6 +75,8 @@
     </ul>
     {{- end }}
   </div>
+  {{- /* Ступень 8 «Свои данные» выключена 2026-10-23: материалы — draft: true в content/08-your-data/.
+         Вернуть — снять draft и раскомментировать блок.
   <div class="side__step{{ if not .Collections.step_8.Items }} side__step--empty{{ end }}">
     <p class="side__title"><span class="side__num">8</span>Свои данные</p>
     {{- if .Collections.step_8.Items }}
@@ -85,6 +87,7 @@
     </ul>
     {{- end }}
   </div>
+  */}}
   <div class="side__step{{ if not .Collections.step_9.Items }} side__step--empty{{ end }}">
     <p class="side__title"><span class="side__num">9</span>Как не сломать</p>
     {{- if .Collections.step_9.Items }}

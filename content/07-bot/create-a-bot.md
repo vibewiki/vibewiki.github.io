@@ -21,7 +21,7 @@ tool: "Claude Code"
 
 - [[kak-ustanovit-claude-code|установленный Claude Code]];
 - Telegram;
-- час.
+- 10 минут.
 
 ## Шаги
 

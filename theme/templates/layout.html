@@ -51,6 +51,9 @@
     <aside class="side">
       {{ template "sidebar.html" . }}
     </aside>
+    {{- /* Место прокрутки меню ставится сразу, до первой отрисовки: иначе меню мелькает с начала и прыгает.
+           Запоминает его wiki.js (тот же ключ). */}}
+    <script>try{var s=JSON.parse(sessionStorage.getItem('wiki-menu-scroll')||'{}');if(s[0])document.currentScript.previousElementSibling.scrollTop=s[0]}catch(e){}</script>
     <main class="main">
       {{ .Body }}
     </main>
