@@ -7,7 +7,7 @@ cd "$ROOT_DIR"
 echo "1/2 Материалы"
 python3 scripts/check.py
 
-NOTEPUB_REF="${NOTEPUB_REF:-864920de7068737d5e95bc15b0e45dc1c3436da3}"
+NOTEPUB_REF="${NOTEPUB_REF:-8ef36a58c94dca5bd7f3f696c05a9201cd140d47}"
 NOTEPUB_BIN="${NOTEPUB_BIN:-}"
 if [[ -z "$NOTEPUB_BIN" ]]; then
   if [[ -x "$ROOT_DIR/.bin/notepub" ]]; then NOTEPUB_BIN="$ROOT_DIR/.bin/notepub"

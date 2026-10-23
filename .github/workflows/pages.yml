@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NOTEPUB_REF: 864920de7068737d5e95bc15b0e45dc1c3436da3   # тот же, что в scripts/build.sh
+  NOTEPUB_REF: 8ef36a58c94dca5bd7f3f696c05a9201cd140d47   # тот же, что в scripts/build.sh
 
 jobs:
   # Сборка идёт и на пулл-реквесте: материал без подписи автора или с занятым адресом её не проходит.
