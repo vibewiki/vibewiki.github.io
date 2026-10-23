@@ -13,6 +13,7 @@ fields:
     - checked       # когда автор последний раз проделал это сам, словами: «11 октября 2026»
     - tool          # на чём проверено: «Claude Code», «Cursor»…
     - lead          # вводный абзац под заголовком
+    - landing       # только у главной: true — прежняя оформленная главная (home.html) вместо обычной страницы
   defaults:
     draft: false
 
@@ -21,10 +22,13 @@ fm_schema:
   draft: boolean
   noindex: boolean
   step: string
+  landing: boolean
 
 types:
   home:
-    template: "home.html"
+    # Главная — обычная страница с деревом ступеней слева. Прежняя оформленная главная выключена, не удалена:
+    # вернуть — template: "home.html" здесь и landing: true в content/home.md.
+    template: "page.html"
     permalink: "/"
     include_in: { sitemap: true, search: false }
   page:            # служебная страница вне ступеней: как добавить материал

@@ -10,6 +10,9 @@
 # Профиль — в ~/.vibewiki-vscode: путь короткий нарочно, длинный ломает сокет VS Code (предел 103 знака).
 # Из терминала расширения VS Code переменные ELECTRON_RUN_AS_NODE и VSCODE_* запускают программу как Node —
 # поэтому они снимаются. Claude Code в чистом профиле входит сам: вход общий для всего Mac (связка ключей).
+# Свои настройки git и gh (GIT_CONFIG_GLOBAL, GH_CONFIG_DIR): в окне git без имени и входа, как на новом
+# компьютере, а вход gh под учётной записью для демо не пропишется в общий ~/.gitconfig и не перехватит пуши
+# владельца в его репозитории. Демо-папку открывать вне любого репозитория — иначе Claude сохранит в него.
 # Перед публикацией снимка: блок «Recent» на стартовой странице показывает папки владельца — закрасить;
 # вывод команд в разговоре может показать имя пользователя — закрасить.
 set -Eeuo pipefail
@@ -20,11 +23,12 @@ run() {
   env -u ELECTRON_RUN_AS_NODE -u VSCODE_IPC_HOOK -u VSCODE_IPC_HOOK_CLI -u VSCODE_PID -u VSCODE_CWD -u VSCODE_NLS_CONFIG \
     -u VSCODE_HANDLES_UNCAUGHT_ERRORS -u VSCODE_CRASH_REPORTER_PROCESS_TYPE -u VSCODE_ESM_ENTRYPOINT \
     -u VSCODE_CODE_CACHE_PATH -u VSCODE_NODE_COMPILE_CACHE_ROOT -u VSCODE_L \
+    GIT_CONFIG_GLOBAL="$P/gitconfig" GH_CONFIG_DIR="$P/gh" \
     "$APP/Contents/MacOS/Code" --user-data-dir "$P/data" --extensions-dir "$P/ext" "$@"
 }
 case "${1:-}" in
   open)
-    mkdir -p "$P/data/User" "$P/ext"
+    mkdir -p "$P/data/User" "$P/ext" "$P/gh"; touch "$P/gitconfig"
     [[ -f "$P/data/User/settings.json" ]] || cat > "$P/data/User/settings.json" <<'JSON'
 { "telemetry.telemetryLevel": "off", "update.mode": "none", "window.restoreWindows": "none",
   "workbench.colorTheme": "Default Light Modern", "extensions.ignoreRecommendations": true,

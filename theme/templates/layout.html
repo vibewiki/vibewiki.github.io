@@ -35,13 +35,14 @@
       <nav class="top__links" aria-label="О курсе">
         <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/"{{ if eq .Page.Slug .Settings.after_slug }} aria-current="page"{{ end }}>После курса</a>
         <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/"{{ if eq .Page.Slug .Settings.add_slug }} aria-current="page"{{ end }}>Добавить материал</a>
-        <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
+        <a href="{{ .Settings.author_url }}" target="_blank" rel="author noopener">{{ .Settings.author_label }}</a>
       </nav>
       <button class="top__burger" type="button" data-drawer-open aria-controls="drawer" aria-expanded="false" aria-label="Открыть содержание"><span aria-hidden="true"></span></button>
     </div>
   </header>
 
-  {{- if .IsHome }}
+  {{- /* Оформленная главная без меню — только при landing: true в content/home.md (сейчас выключена). */}}
+  {{- if and .IsHome .FM.landing }}
   <main class="home-main">
     {{ .Body }}
   </main>
@@ -66,7 +67,7 @@
     <p class="drawer__links">
       <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/">После курса</a>
       <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/">Добавить материал</a>
-      <a href="{{ .Settings.author_url }}" rel="author noopener">{{ .Settings.author_label }}</a>
+      <a href="{{ .Settings.author_url }}" target="_blank" rel="author noopener">{{ .Settings.author_label }}</a>
     </p>
   </aside>
   <script src="{{ .AssetsBase }}/wiki.js" defer></script>

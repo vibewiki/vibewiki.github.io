@@ -2,6 +2,9 @@
        и в выдвижном ящике справа на узком. Названия ступеней вписаны сюда: движок не умеет циклов по числам.
        Ступень без материалов видна тусклой — по ней понятно, что будет дальше. */ -}}
 <nav class="side__nav" aria-label="Содержание курса">
+  <div class="side__step side__about">
+    <p class="side__title"><span class="side__num">·</span><a href="{{ $.BaseURL }}/"{{ if $.IsHome }} aria-current="page"{{ end }}>О курсе</a></p>
+  </div>
   <div class="side__step{{ if not .Collections.step_1.Items }} side__step--empty{{ end }}">
     <p class="side__title"><span class="side__num">1</span>Что это и чего ждать</p>
     {{- if .Collections.step_1.Items }}

@@ -73,6 +73,11 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .prose p:has(> img) + p:has(> em:only-child) { margin-top: 10px; font-size: 14px; line-height: 1.5; color: var(--muted); }
 .prose p:has(> img) + p:has(> em:only-child) em { font-style: normal; }
 .prose p:has(> img) { margin-top: 24px; }
+/* после снимка — отступ, чтобы текст не лип к нему; подпись курсивом под снимком остаётся прижатой */
+.prose > p:has(> img) + *,
+.prose p:has(> img) + p:has(> em:only-child) + *,
+.prose li:has(> p > img) + li,
+.prose :is(ul, ol):has(> li:last-child > p > img) + * { margin-top: 28px; }
 
 /* кнопки: главная и «После курса» */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 16px; font-weight: 500; text-decoration: none; transition: background 0.15s var(--ease); }
@@ -126,7 +131,7 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .offer { padding: 48px; border-radius: 18px; background: var(--panel); color: var(--panel-ink); }
 .offer__kicker { font: 400 12px/1.4 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--panel-kicker); }
 .offer h2 { margin-top: 12px; }
-.offer__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin: 32px 0 36px; }
+.offer__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 32px 0 36px; }
 .offer__grid strong { display: block; font-size: 18px; font-weight: 600; }
 .offer__grid span { display: block; margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--panel-muted); }
 
@@ -134,6 +139,9 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .side__after { margin-top: 26px !important; padding-top: 18px; border-top: 1px solid var(--line); }
 .side__after a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); background: none !important; }
 .side__after a:hover, .side__after a[aria-current="page"] { color: var(--accent); }
+.side__about { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.side__nav .side__about a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); background: none !important; }
+.side__nav .side__about a:hover, .side__nav .side__about a[aria-current="page"] { color: var(--accent); background: none; }
 
 /* ---------- подпись автора ---------- */
 .byline { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
