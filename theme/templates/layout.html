@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{ .AssetsBase }}/fonts.css" />
   <link rel="stylesheet" href="{{ .AssetsBase }}/tokens.css" />
   <link rel="stylesheet" href="{{ .AssetsBase }}/wiki.css" />
+  <link rel="icon" href="{{ .AssetsBase }}/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="{{ .AssetsBase }}/apple-touch-icon.png" />
   {{- if .Page.Description }}
   <meta name="description" content="{{ .Page.Description }}" />
   {{- end }}
@@ -22,6 +24,13 @@
   <meta property="{{ .Key }}" content="{{ .Value }}" />
   {{- end }}
   <title>{{ .Title }}</title>
+  {{- /* Разметка schema.org: главная — курс, материал — статья с автором. Значения шаблон сам кодирует в JSON.
+         Движок на закреплённой версии сам её не пишет (seo.jsonld: auto — с v0.1.9). */}}
+  {{- if .IsHome }}
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": {{ .Settings.site_name }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-sa/4.0/", "provider": {"@type": "Person", "name": "Антон Ложкин", "url": {{ .Settings.author_url }}}}</script>
+  {{- else if .FM.author }}
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": {{ .Page.Title }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "author": {"@type": "Person", "name": {{ .FM.author }}, "url": {{ .FM.author_url }}}, "isPartOf": {"@type": "Course", "name": {{ .Settings.site_name }}, "url": {{ printf "%s/" .BaseURL }}}}</script>
+  {{- end }}
 </head>
 <body>
   {{- /* Шапка на всех экранах: название курса и строка о нём, справа — «Добавить материал» и «Об авторе».

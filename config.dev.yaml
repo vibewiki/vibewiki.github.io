@@ -4,7 +4,7 @@ site:
   base_url: "http://127.0.0.1:8087"
   title: "Вайбкодинг с нуля"
   description: "Открытый курс для тех, кто не программист: от оплаты и установки до своего сайта, приложения и бота."
-  default_og_image: ""
+  default_og_image: "/media/og.png"         # рисует scripts/brand.py
   media_base_url: "http://127.0.0.1:8087/media"
   host: 127.0.0.1
 

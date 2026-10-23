@@ -31,5 +31,8 @@ mkdir -p "$DIST"
 "$NOTEPUB_BIN" build --config "$CONFIG" --rules ./rules.yaml --dist "$DIST" --artifacts ./.notepub/artifacts
 # снимки экрана к материалам: в тексте — ![…](/media/shots/имя.png), движок выводит их от media_base_url
 if [[ -d media ]]; then mkdir -p "$DIST/media"; cp -R media/. "$DIST/media/"; fi
+# слэш у внутренних ссылок, размеры снимков, llms.txt — scripts/postbuild.py; адрес сайта — из того же конфига
+BASE_URL="$(sed -n 's/^  base_url: *"\{0,1\}\([^"]*\)"\{0,1\} *$/\1/p' "$CONFIG" | head -1)"
+python3 scripts/postbuild.py "$DIST" "$BASE_URL"
 touch "$DIST/.nojekyll"
 echo "Готово: $DIST — не закоммичено и не опубликовано"
