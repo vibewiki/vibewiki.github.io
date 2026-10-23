@@ -55,7 +55,7 @@ settings:
   author_url: "https://antonlozhkin.ru/"
   contact_url: "https://t.me/cookiespooky"
   # Счётчики и подтверждение в вебмастерах — пустые строки ничего не выводят (layout.html).
-  metrika_id: ""                  # номер счётчика Яндекс.Метрики
+  metrika_id: "113755107"         # номер счётчика Яндекс.Метрики
   ga_id: ""                       # идентификатор потока Google Analytics, вида G-XXXXXXXXXX
   yandex_verification: ""         # content из метатега подтверждения в Яндекс.Вебмастере
   google_verification: ""         # content из метатега подтверждения в Google Search Console
