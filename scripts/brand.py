@@ -52,7 +52,7 @@ def og():
     text(d, (80, 310), "Вайбкодинг с нуля", font(92, 650), INK)
     text(d, (80, 390), "Открытый курс для тех, кто не программист:", font(38, 400), INK_1)
     text(d, (80, 440), "свой сайт, калькулятор и бот — с нейросетью", font(38, 400), INK_1)
-    text(d, (80, 550), "vibewiki.github.io/vibecourse", font(30, 400), MUTED)
+    text(d, (80, 550), "vibewiki.github.io", font(30, 400), MUTED)
     im.save(ROOT / "media/og.png", optimize=True)
 
 

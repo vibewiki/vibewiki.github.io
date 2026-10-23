@@ -24,6 +24,12 @@
   <meta property="{{ .Key }}" content="{{ .Value }}" />
   {{- end }}
   <title>{{ .Title }}</title>
+  {{- if .Settings.yandex_verification }}
+  <meta name="yandex-verification" content="{{ .Settings.yandex_verification }}" />
+  {{- end }}
+  {{- if .Settings.google_verification }}
+  <meta name="google-site-verification" content="{{ .Settings.google_verification }}" />
+  {{- end }}
   {{- /* Разметка schema.org: главная — курс, материал — статья с автором. Значения шаблон сам кодирует в JSON.
          Движок на закреплённой версии сам её не пишет (seo.jsonld: auto — с v0.1.9). */}}
   {{- if .IsHome }}
@@ -83,5 +89,43 @@
     </p>
   </aside>
   <script src="{{ .AssetsBase }}/wiki.js" defer></script>
+  {{- /* Счётчики — из settings в config.yaml, пустой номер ничего не выводит. Очередь заводится сразу, а сами
+         скрипты грузятся после загрузки страницы, когда браузер свободен: визит не теряется — вызовы ждут в
+         очереди. Номер склеивается со строкой, а не подставляется внутрь кавычек: в <script> шаблон сам отдаёт
+         значение строкой в кавычках. Так же устроено на antonlozhkin.ru. */}}
+  {{- if or .Settings.metrika_id .Settings.ga_id }}
+  <script>
+    (function () {
+      var urls = [];
+      {{- if .Settings.metrika_id }}
+      window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+      window.ym.l = 1 * new Date();
+      ym(Number({{ .Settings.metrika_id }}), "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: false });
+      urls.push("https://mc.yandex.ru/metrika/tag.js?id=" + {{ .Settings.metrika_id }});
+      {{- end }}
+      {{- if .Settings.ga_id }}
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { window.dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", {{ .Settings.ga_id }});
+      urls.push("https://www.googletagmanager.com/gtag/js?id=" + {{ .Settings.ga_id }});
+      {{- end }}
+      function load() {
+        urls.forEach(function (src) {
+          for (var j = 0; j < document.scripts.length; j++) if (document.scripts[j].src === src) return;
+          var s = document.createElement("script"); s.async = true; s.src = src; document.head.appendChild(s);
+        });
+      }
+      function schedule() {
+        if (window.requestIdleCallback) requestIdleCallback(load, { timeout: 3000 });
+        else setTimeout(load, 1200);
+      }
+      if (document.readyState === "complete") schedule(); else window.addEventListener("load", schedule);
+    })();
+  </script>
+  {{- end }}
+  {{- if .Settings.metrika_id }}
+  <noscript><div><img src="https://mc.yandex.ru/watch/{{ .Settings.metrika_id }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  {{- end }}
 </body>
 </html>

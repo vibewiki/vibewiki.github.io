@@ -15,7 +15,7 @@ lead: "Эта страница для тех, кто уже делает сво�
 
 ## Как прислать
 
-Курс лежит в открытом репозитории: [github.com/vibewiki/vibecourse](https://github.com/vibewiki/vibecourse).
+Курс лежит в открытом репозитории: [github.com/vibewiki/vibewiki.github.io](https://github.com/vibewiki/vibewiki.github.io).
 Материалы присылают пулл-реквестом — предложением изменений, которое автор курса смотрит и принимает.
 
 1. Сделайте копию репозитория и ветку.

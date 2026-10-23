@@ -1,11 +1,12 @@
-# Вики-курс по вайбкодингу. Выкладывается на GitHub Pages из репозитория vibewiki/vibecourse — адрес с путём /vibecourse.
+# Вики-курс по вайбкодингу. Выкладывается на GitHub Pages из репозитория vibewiki/vibewiki.github.io — с корня домена
+# (до 2026-10-23 — vibewiki/vibecourse, по адресу с путём /vibecourse; старые адреса переводит репозиторий vibewiki/vibecourse).
 site:
   id: vibecoding-wiki
-  base_url: "https://vibewiki.github.io/vibecourse"
+  base_url: "https://vibewiki.github.io"
   title: "Вайбкодинг с нуля"
   description: "Открытый курс для тех, кто не программист: от оплаты и установки до своего сайта, приложения и бота."
   default_og_image: "/media/og.png"         # рисует scripts/brand.py
-  media_base_url: "https://vibewiki.github.io/vibecourse/media"
+  media_base_url: "https://vibewiki.github.io/media"
   host: 127.0.0.1
 
 runtime:
@@ -47,12 +48,17 @@ rules_path: ./rules.yaml
 settings:
   site_name: "Вайбкодинг с нуля"
   site_note: "Открытый курс для тех, кто не программист"
-  repo_url: "https://github.com/vibewiki/vibecourse"
+  repo_url: "https://github.com/vibewiki/vibewiki.github.io"
   add_slug: "kak-dobavit-material"      # страница, куда ведёт «Добавить материал» в шапке
   after_slug: "posle-kursa"             # оффер в конце курса: «После курса» в шапке, в меню и на главной
   author_label: "Об авторе"
   author_url: "https://antonlozhkin.ru/"
   contact_url: "https://t.me/cookiespooky"
+  # Счётчики и подтверждение в вебмастерах — пустые строки ничего не выводят (layout.html).
+  metrika_id: ""                  # номер счётчика Яндекс.Метрики
+  ga_id: ""                       # идентификатор потока Google Analytics, вида G-XXXXXXXXXX
+  yandex_verification: ""         # content из метатега подтверждения в Яндекс.Вебмастере
+  google_verification: ""         # content из метатега подтверждения в Google Search Console
 
 robots:
   disallow: []
