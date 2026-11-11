@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-STEPS = [str(n) for n in range(1, 10)]          # ступени курса; новая — ещё и в rules.yaml, и в sidebar.html
+STEPS = [str(n) for n in range(1, 11)]          # ступени курса ("10" — «Показать людям», в меню 9-я); новая — ещё и в rules.yaml, и в sidebar.html
 NEED = ("description", "step", "order", "author", "author_url")
 
 

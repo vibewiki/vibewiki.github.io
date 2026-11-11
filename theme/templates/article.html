@@ -1,6 +1,7 @@
 <article class="page">
   <header class="page__head">
-    <p class="eyebrow">Ступень {{ .FM.step }}</p>
+    {{- /* Ключ "10" — ступень «Показать людям», в меню она 9-я («9» занят выключенной «Свои данные»). */}}
+    <p class="eyebrow">Ступень {{ if eq .FM.step "10" }}9{{ else }}{{ .FM.step }}{{ end }}</p>
     <h1>{{ .Page.Title }}</h1>
     {{- if .FM.lead }}
     <p class="lead">{{ .FM.lead }}</p>

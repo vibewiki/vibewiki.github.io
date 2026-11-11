@@ -6,7 +6,7 @@ fields:
     - description
     - draft
     - noindex
-    - step          # ступень курса, строкой: "1" … "9" — в какой раздел бокового меню встаёт материал
+    - step          # ступень курса, строкой: "1" … "10" — в какой раздел бокового меню встаёт материал
     - order         # место внутри ступени, по возрастанию
     - author        # подпись под материалом — обязательна, проверяет scripts/check.py
     - author_url    # куда ведёт подпись
@@ -138,6 +138,18 @@ collections:
       all:
         - fm_eq: { key: "draft", value: false }
         - fm_eq: { key: "step", value: "9" }
+        - type_in: ["article"]
+    sort: { by: "fm.order", dir: "asc", nulls_last: true }
+    limit: 100
+
+  # Ступень «Показать людям» (в меню — 9-я): ключ "10", потому что "9" занят выключенной «Свои данные».
+  step_10:
+    kind: "filter"
+    materialize: true
+    where:
+      all:
+        - fm_eq: { key: "draft", value: false }
+        - fm_eq: { key: "step", value: "10" }
         - type_in: ["article"]
     sort: { by: "fm.order", dir: "asc", nulls_last: true }
     limit: 100
