@@ -1,5 +1,5 @@
 # Вики-курс по вайбкодингу. Выкладывается на GitHub Pages из репозитория vibewiki/vibewiki.github.io — с корня домена
-# (до 2026-10-23 — vibewiki/vibecourse, по адресу с путём /vibecourse; старые адреса переводит репозиторий vibewiki/vibecourse).
+# (до 2026-10-23 — vibewiki/vibecourse, по адресу с путём /vibecourse; старые адреса больше не открываются).
 site:
   id: vibecoding-wiki
   base_url: "https://vibewiki.github.io"
