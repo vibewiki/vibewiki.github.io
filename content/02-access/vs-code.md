@@ -1,7 +1,7 @@
 ---
 type: article
 slug: chto-takoe-vs-code
-title: "VS Code: что это и где в нём что"
+title: "VS Code для вайбкодинга"
 description: "Окно программы, в которой идёт вся работа: где файлы, где разговор с Claude, как открыть папку и как понять, что изменения сохранены."
 step: "2"
 order: 4
