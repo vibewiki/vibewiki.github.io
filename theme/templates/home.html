@@ -1,4 +1,4 @@
-{{- /* Главная: первый экран, что получится к концу, девять ступеней карточками, кто пишет, что после курса.
+{{- /* Главная: первый экран, что получится к концу, девять ступеней карточками, кто пишет, что после гайда.
        Бокового меню здесь нет (layout.html): ступени перечислены карточками. Названия ступеней и строка «что выйдет»
        вписаны руками, как в sidebar.html, — движок не умеет циклов по числам. Снимки — media/shots/. */ -}}
 <div class="home">
@@ -26,8 +26,8 @@
   </section>
 
   <section class="results" aria-labelledby="results-h">
-    <h2 id="results-h">Что у вас будет к концу курса</h2>
-    <p class="section-lead">Не учебные упражнения, а вещи для своего дела. Снимки ниже — примеры того, что получается по запросам из курса.</p>
+    <h2 id="results-h">Что у вас будет к концу гайда</h2>
+    <p class="section-lead">Не учебные упражнения, а вещи для своего дела. Снимки ниже — примеры того, что получается по запросам из гайда.</p>
     <div class="results__grid">
       <a class="result" href="{{ .BaseURL }}/stranica-o-svoem-dele/">
         <img src="{{ .BaseURL }}/media/shots/stranica-kompyuter.png" alt="Страница бухгалтера кафе с кнопкой «Написать в Telegram» и ценами" loading="lazy">
@@ -64,7 +64,7 @@
       </li>
       <li class="step">
         <p class="step__num">2</p>
-        <h3>Доступ: оплатить и установить</h3>
+        <h3>Оплатить и установить</h3>
         <p class="step__out">Оплаченная подписка и Claude Code в программе VS Code.</p>
         <ul>{{ range .Collections.step_2.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
       </li>
@@ -94,7 +94,7 @@
       </li>
       <li class="step">
         <p class="step__num">7</p>
-        <h3>Бот</h3>
+        <h3>Телеграм-бот</h3>
         <p class="step__out">Telegram-бот принимает заявки и присылает их вам.</p>
         <ul>{{ range .Collections.step_7.Items }}<li><a href="{{ $.BaseURL }}/{{ .Slug }}/">{{ .Title }}</a></li>{{ end }}</ul>
       </li>
@@ -118,7 +118,7 @@
   </section>
 
   <section class="offer" aria-labelledby="offer-h">
-    <p class="offer__kicker">После курса</p>
+    <p class="offer__kicker">После гайда</p>
     <h2 id="offer-h">Дальше — одному или вместе</h2>
     <div class="offer__grid">
       <div><strong>Разбор</strong><span>Один созвон: смотрим, что вы сделали, что опасно оставлять и какой следующий шаг.</span></div>

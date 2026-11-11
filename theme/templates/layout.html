@@ -30,16 +30,16 @@
   {{- if .Settings.google_verification }}
   <meta name="google-site-verification" content="{{ .Settings.google_verification }}" />
   {{- end }}
-  {{- /* Разметка schema.org: главная — курс, материал — статья с автором. Значения шаблон сам кодирует в JSON.
+  {{- /* Разметка schema.org: главная — гайд, материал — статья с автором. Значения шаблон сам кодирует в JSON.
          Движок на закреплённой версии сам её не пишет (seo.jsonld: auto — с v0.1.9). */}}
   {{- if .IsHome }}
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": {{ .Settings.site_name }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-sa/4.0/", "provider": {"@type": "Person", "name": "Антон Ложкин", "url": {{ .Settings.author_url }}}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": {{ .Settings.site_name }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "isAccessibleForFree": true, "license": "https://creativecommons.org/licenses/by-sa/4.0/", "author": {"@type": "Person", "name": "Антон Ложкин", "url": {{ .Settings.author_url }}}}</script>
   {{- else if .FM.author }}
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": {{ .Page.Title }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "author": {"@type": "Person", "name": {{ .FM.author }}, "url": {{ .FM.author_url }}}, "isPartOf": {"@type": "Course", "name": {{ .Settings.site_name }}, "url": {{ printf "%s/" .BaseURL }}}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": {{ .Page.Title }}, "description": {{ .Page.Description }}, "url": {{ .Canonical }}, "inLanguage": "ru", "author": {"@type": "Person", "name": {{ .FM.author }}, "url": {{ .FM.author_url }}}, "isPartOf": {"@type": "WebSite", "name": {{ .Settings.site_name }}, "url": {{ printf "%s/" .BaseURL }}}}</script>
   {{- end }}
 </head>
 <body>
-  {{- /* Шапка на всех экранах: название курса и строка о нём, справа — «Добавить материал» и «Об авторе».
+  {{- /* Шапка на всех экранах: название гайда и строка о нём, справа — «Добавить материал» и «Об авторе».
          На узком экране ссылки уходят в ящик, на их месте кнопка содержания; меню выезжает справа. */}}
   <header class="top">
     <div class="top__inner">
@@ -47,8 +47,8 @@
         <span class="top__name">{{ .Settings.site_name }}</span>
         <span class="top__note">{{ .Settings.site_note }}</span>
       </a>
-      <nav class="top__links" aria-label="О курсе">
-        <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/"{{ if eq .Page.Slug .Settings.after_slug }} aria-current="page"{{ end }}>После курса</a>
+      <nav class="top__links" aria-label="О гайде">
+        <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/"{{ if eq .Page.Slug .Settings.after_slug }} aria-current="page"{{ end }}>После гайда</a>
         <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/"{{ if eq .Page.Slug .Settings.add_slug }} aria-current="page"{{ end }}>Добавить материал</a>
         <a href="{{ .Settings.author_url }}" target="_blank" rel="author noopener">{{ .Settings.author_label }}</a>
       </nav>
@@ -83,7 +83,7 @@
     </div>
     {{ template "sidebar.html" . }}
     <p class="drawer__links">
-      <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/">После курса</a>
+      <a href="{{ .BaseURL }}/{{ .Settings.after_slug }}/">После гайда</a>
       <a href="{{ .BaseURL }}/{{ .Settings.add_slug }}/">Добавить материал</a>
       <a href="{{ .Settings.author_url }}" target="_blank" rel="author noopener">{{ .Settings.author_label }}</a>
     </p>
