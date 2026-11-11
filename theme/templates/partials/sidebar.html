@@ -1,100 +1,128 @@
-{{- /* Боковое меню: девять ступеней курса и материалы каждой. Печатается дважды — слева на широком экране
+{{- /* Боковое меню: девять ступеней гайда и материалы каждой. Печатается дважды — слева на широком экране
        и в выдвижном ящике справа на узком. Названия ступеней вписаны сюда: движок не умеет циклов по числам.
-       Ступень без материалов видна тусклой — по ней понятно, что будет дальше. */ -}}
-<nav class="side__nav" aria-label="Содержание курса">
+       Ступень без материалов видна тусклой — по ней понятно, что будет дальше. Ступень с материалами — <details>:
+       открыта только та, где лежит открытая страница; клик по названию сворачивает и разворачивает её без перехода. */ -}}
+<nav class="side__nav" aria-label="Содержание гайда">
   <div class="side__step side__about">
-    <p class="side__title"><span class="side__num">·</span><a href="{{ $.BaseURL }}/"{{ if $.IsHome }} aria-current="page"{{ end }}>О курсе</a></p>
+    <p class="side__title"><span class="side__num">·</span><a href="{{ $.BaseURL }}/"{{ if $.IsHome }} aria-current="page"{{ end }}>О гайде</a></p>
   </div>
-  <div class="side__step{{ if not .Collections.step_1.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">1</span>Что это и чего ждать</p>
-    {{- if .Collections.step_1.Items }}
+  {{- $open_1 := false }}{{ range .Collections.step_1.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_1 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_1.Items }}
+  <details class="side__step"{{ if $open_1 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">1</span>Что это и чего ждать</summary>
     <ul>
       {{- range .Collections.step_1.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_2.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">2</span>Доступ: оплатить и установить</p>
-    {{- if .Collections.step_2.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">1</span>Что это и чего ждать</p></div>
+  {{- end }}
+  {{- $open_2 := false }}{{ range .Collections.step_2.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_2 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_2.Items }}
+  <details class="side__step"{{ if $open_2 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">2</span>Оплатить и установить</summary>
     <ul>
       {{- range .Collections.step_2.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_3.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">3</span>Первый разговор</p>
-    {{- if .Collections.step_3.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">2</span>Оплатить и установить</p></div>
+  {{- end }}
+  {{- $open_3 := false }}{{ range .Collections.step_3.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_3 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_3.Items }}
+  <details class="side__step"{{ if $open_3 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">3</span>Первый разговор</summary>
     <ul>
       {{- range .Collections.step_3.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_4.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">4</span>Первая вещь</p>
-    {{- if .Collections.step_4.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">3</span>Первый разговор</p></div>
+  {{- end }}
+  {{- $open_4 := false }}{{ range .Collections.step_4.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_4 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_4.Items }}
+  <details class="side__step"{{ if $open_4 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">4</span>Первая вещь</summary>
     <ul>
       {{- range .Collections.step_4.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_5.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">5</span>В интернет</p>
-    {{- if .Collections.step_5.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">4</span>Первая вещь</p></div>
+  {{- end }}
+  {{- $open_5 := false }}{{ range .Collections.step_5.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_5 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_5.Items }}
+  <details class="side__step"{{ if $open_5 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">5</span>В интернет</summary>
     <ul>
       {{- range .Collections.step_5.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_6.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">6</span>Первое приложение</p>
-    {{- if .Collections.step_6.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">5</span>В интернет</p></div>
+  {{- end }}
+  {{- $open_6 := false }}{{ range .Collections.step_6.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_6 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_6.Items }}
+  <details class="side__step"{{ if $open_6 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">6</span>Первое приложение</summary>
     <ul>
       {{- range .Collections.step_6.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_7.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">7</span>Бот</p>
-    {{- if .Collections.step_7.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">6</span>Первое приложение</p></div>
+  {{- end }}
+  {{- $open_7 := false }}{{ range .Collections.step_7.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_7 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_7.Items }}
+  <details class="side__step"{{ if $open_7 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">7</span>Телеграм-бот</summary>
     <ul>
       {{- range .Collections.step_7.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_8.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">8</span>Как не сломать</p>
-    {{- if .Collections.step_8.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">7</span>Телеграм-бот</p></div>
+  {{- end }}
+  {{- $open_8 := false }}{{ range .Collections.step_8.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_8 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_8.Items }}
+  <details class="side__step"{{ if $open_8 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">8</span>Как не сломать</summary>
     <ul>
       {{- range .Collections.step_8.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
-  <div class="side__step{{ if not .Collections.step_10.Items }} side__step--empty{{ end }}">
-    <p class="side__title"><span class="side__num">9</span>Показать людям</p>
-    {{- if .Collections.step_10.Items }}
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">8</span>Как не сломать</p></div>
+  {{- end }}
+  {{- $open_10 := false }}{{ range .Collections.step_10.Items }}{{ if eq .Slug $.Page.Slug }}{{ $open_10 = true }}{{ end }}{{ end }}
+  {{- if .Collections.step_10.Items }}
+  <details class="side__step"{{ if $open_10 }} open{{ end }}>
+    <summary class="side__title"><span class="side__num">9</span>Показать людям</summary>
     <ul>
       {{- range .Collections.step_10.Items }}
       <li><a href="{{ $.BaseURL }}/{{ .Slug }}/"{{ if eq .Slug $.Page.Slug }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
       {{- end }}
     </ul>
-    {{- end }}
-  </div>
+  </details>
+  {{- else }}
+  <div class="side__step side__step--empty"><p class="side__title"><span class="side__num">9</span>Показать людям</p></div>
+  {{- end }}
   {{- /* Ступень «Свои данные» выключена 2026-10-23: материалы — draft: true в content/08-your-data/, step "9";
          её номер 8 отдан «Как не сломать». Вернуть — снять draft и noindex, раскомментировать блок.
   <div class="side__step{{ if not .Collections.step_9.Items }} side__step--empty{{ end }}">
@@ -109,6 +137,6 @@
   </div>
   */}}
   <div class="side__step side__after">
-    <p class="side__title"><span class="side__num">→</span><a href="{{ $.BaseURL }}/{{ $.Settings.after_slug }}/"{{ if eq $.Page.Slug $.Settings.after_slug }} aria-current="page"{{ end }}>После курса</a></p>
+    <p class="side__title"><span class="side__num">→</span><a href="{{ $.BaseURL }}/{{ $.Settings.after_slug }}/"{{ if eq $.Page.Slug $.Settings.after_slug }} aria-current="page"{{ end }}>После гайда</a></p>
   </div>
 </nav>

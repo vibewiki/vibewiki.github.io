@@ -1,4 +1,4 @@
-/* Вики-курс. Цвета и шрифты — tokens.css, тот же файл, что у antonlozhkin.ru; здесь только раскладка и текст.
+/* Вики-гайд. Цвета и шрифты — tokens.css, тот же файл, что у antonlozhkin.ru; здесь только раскладка и текст.
    Порядок: основа → шапка → боковое меню → страница и текст → подпись → узкий экран (ящик справа). */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -30,11 +30,21 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .side__title { display: flex; gap: 10px; align-items: baseline; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
 .side__num { flex: none; width: 16px; font: 400 12px/1 var(--font-mono); color: var(--muted-2); }
 .side__step--empty .side__title { font-weight: 400; color: var(--muted-3); }
+/* ступень с материалами — <details>: название сворачивает и разворачивает список, стрелка справа показывает состояние */
+.side__nav summary { cursor: pointer; list-style: none; border-radius: 6px; padding: 4px 0; margin: -4px 0; }
+.side__nav summary::-webkit-details-marker { display: none; }
+.side__nav summary::after { content: ""; margin-left: auto; flex: none; align-self: center; width: 6px; height: 6px; border-right: 1.5px solid var(--muted-2); border-bottom: 1.5px solid var(--muted-2); transform: rotate(-45deg); transition: transform 0.15s var(--ease); margin-right: 4px; }
+.side__nav details[open] > summary::after { transform: rotate(45deg); }
+.side__nav details.is-closing > summary::after { transform: rotate(-45deg); }
+.side__nav details > ul { overflow: hidden; }
+.side__nav summary:hover { color: var(--ink); }
+.side__nav summary:hover::after { border-color: var(--ink); }
+.side__nav summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
 .side__nav ul { list-style: none; margin: 8px 0 0; padding: 0 0 0 26px; }
 .side__nav li + li { margin-top: 2px; }
-.side__nav a { display: block; padding: 5px 10px; margin-left: -10px; border-radius: 6px; font-size: 14px; line-height: 1.4; color: var(--ink-2); text-decoration: none; transition: background 0.15s var(--ease), color 0.15s var(--ease); }
-.side__nav a:hover { background: var(--paper-2); color: var(--ink); }
-.side__nav a[aria-current="page"] { background: var(--paper-2); color: var(--ink); font-weight: 500; }
+.side__nav a { display: block; padding: 5px 10px; margin-left: -10px; border-radius: 6px; font-size: 14px; line-height: 1.4; color: var(--link); text-decoration: none; transition: background 0.15s var(--ease), color 0.15s var(--ease); }
+.side__nav a:hover { background: var(--paper-2); color: var(--link); }
+.side__nav a[aria-current="page"] { background: var(--paper-2); color: var(--link); font-weight: 500; }
 
 /* ---------- страница и текст ---------- */
 .main { min-width: 0; padding: 56px 40px 96px 64px; }
@@ -83,7 +93,7 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .prose li:has(> p > img) + li,
 .prose :is(ul, ol):has(> li:last-child > p > img) + * { margin-top: 28px; }
 
-/* кнопки: главная и «После курса» */
+/* кнопки: главная и «После гайда» */
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 16px; font-weight: 500; text-decoration: none; transition: background 0.15s var(--ease); }
 .btn:hover { background: var(--accent); }
 .btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-strong); }
@@ -139,13 +149,13 @@ h1, h2, h3, p, ul, ol { margin: 0; }
 .offer__grid strong { display: block; font-size: 18px; font-weight: 600; }
 .offer__grid span { display: block; margin-top: 8px; font-size: 15px; line-height: 1.5; color: var(--panel-muted); }
 
-/* «После курса» последним пунктом бокового меню */
+/* «После гайда» последним пунктом бокового меню */
 .side__after { margin-top: 26px !important; padding-top: 18px; border-top: 1px solid var(--line); }
-.side__after a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); background: none !important; }
-.side__after a:hover, .side__after a[aria-current="page"] { color: var(--accent); }
+.side__after a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--link); background: none !important; }
+.side__after a:hover, .side__after a[aria-current="page"] { color: var(--ink); }
 .side__about { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.side__nav .side__about a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); background: none !important; }
-.side__nav .side__about a:hover, .side__nav .side__about a[aria-current="page"] { color: var(--accent); background: none; }
+.side__nav .side__about a { display: inline; padding: 0; margin: 0; font-size: 14px; font-weight: 600; color: var(--link); background: none !important; }
+.side__nav .side__about a:hover, .side__nav .side__about a[aria-current="page"] { color: var(--ink); background: none; }
 
 /* ---------- подпись автора ---------- */
 .byline { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
